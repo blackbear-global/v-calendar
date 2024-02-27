@@ -9,12 +9,14 @@ import {
   isObject,
 } from '../helpers';
 import spacetime from 'spacetime';
-import { getWeeksInMonth } from 'date-fns/getWeeksInMonth';
-import { getWeek } from 'date-fns/getWeek';
-import { getISOWeek } from 'date-fns/getISOWeek';
-import { addDays } from 'date-fns/addDays';
-import { addMonths } from 'date-fns/addMonths';
-import { addYears } from 'date-fns/addYears';
+import {
+  getWeeksInMonth,
+  getWeek,
+  getISOWeek,
+  addDays,
+  addMonths,
+  addYears
+} from 'date-fns';
 import { type LocaleConfig, default as Locale } from '../locale';
 
 export { addDays, addMonths, addYears };

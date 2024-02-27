@@ -1,5 +1,5 @@
 import { type Ref, inject, provide } from 'vue';
-import { useCalendar } from '..';
+import { useCalendar } from './calendar';
 import { getMonthDates } from '../utils/date/helpers';
 import { type Page, getPageId } from '../utils/page';
 

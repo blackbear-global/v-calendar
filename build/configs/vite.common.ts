@@ -24,20 +24,24 @@ export const readDirRecursive = (path: string): string[] => {
   }, []);
 };
 
-const rollupOptions: RollupOptions = {
-  external: ['vue', '@popperjs/core'],
+const rollupCommonOptions: RollupOptions = {
+  external: ['vue', 'lodash', 'date-fns', 'spacetime', '@floating-ui/dom'],
   output: {
     // Provide global variables to use in the UMD build
     // for externalized deps
     globals: {
-      vue: 'Vue',
-      '@popperjs/core': 'PopperCore',
+      '@floating-ui/dom': 'FloatingUIDOM',
+      'date-fns': 'dateFns',
+      'lodash': '_',
+      'spacetime': 'spacetime',
+      'vue': 'Vue',
     },
   },
 };
 
 const rollupMjsBuildOptions: RollupOptions = {
   input: path.resolve(process.cwd(), 'src/index.ts'),
+  external: rollupCommonOptions.external,
   output: {
     sourcemap: true,
     dir: 'dist/mjs',
@@ -48,11 +52,35 @@ const rollupMjsBuildOptions: RollupOptions = {
   },
 };
 
+const rollupEsmBuildOptions: RollupOptions = {
+  external: rollupCommonOptions.external,
+  output: {
+    format: 'esm',
+    entryFileNames: '[name].js',
+    chunkFileNames: '[name].js',
+    assetFileNames: '[name].[ext]',
+    preserveModules: true,
+    preserveModulesRoot: 'src',
+  },
+};
+
 export function createViteConfig(format: BuildFormat): InlineConfig {
   const isEs = format === 'es';
   const isEsm = ['es', 'mjs'].includes(format);
   const isNode = format === 'mjs';
   const useTerser = format === 'iife';
+
+  let rollupOptions: RollupOptions;
+  switch(format) {
+    case 'es':
+      rollupOptions = rollupEsmBuildOptions;
+      break;
+    case 'mjs':
+      rollupOptions = rollupMjsBuildOptions;
+      break;
+    default:
+      rollupOptions = rollupCommonOptions;
+  }
 
   const config: InlineConfig = {
     resolve,
@@ -67,9 +95,7 @@ export function createViteConfig(format: BuildFormat): InlineConfig {
         // Only for iife/umd
         name: 'VCalendar',
       },
-      rollupOptions: isNode
-        ? { ...rollupOptions, ...rollupMjsBuildOptions }
-        : rollupOptions,
+      rollupOptions,
       // default esbuild, not available for esm format in lib mode
       minify: useTerser ? 'terser' : false,
       terserOptions: useTerser
