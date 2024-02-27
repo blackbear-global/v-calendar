@@ -8,13 +8,13 @@ import {
   isFunction,
   isObject,
 } from '../helpers';
-import { toDate } from 'date-fns-tz';
-import getWeeksInMonth from 'date-fns/getWeeksInMonth';
-import getWeek from 'date-fns/getWeek';
-import getISOWeek from 'date-fns/getISOWeek';
-import addDays from 'date-fns/addDays';
-import addMonths from 'date-fns/addMonths';
-import addYears from 'date-fns/addYears';
+import spacetime from 'spacetime';
+import { getWeeksInMonth } from 'date-fns/getWeeksInMonth';
+import { getWeek } from 'date-fns/getWeek';
+import { getISOWeek } from 'date-fns/getISOWeek';
+import { addDays } from 'date-fns/addDays';
+import { addMonths } from 'date-fns/addMonths';
+import { addYears } from 'date-fns/addYears';
 import { type LocaleConfig, default as Locale } from '../locale';
 
 export { addDays, addMonths, addYears };
@@ -603,7 +603,7 @@ export function getDateFromParts(
       hrs,
       2,
     )}:${pad(min, 2)}:${pad(sec, 2)}.${pad(ms, 3)}`;
-    return toDate(dateString, { timeZone: timezone });
+    return spacetime(dateString, timezone).toNativeDate();
   }
   return new Date(year, month - 1, day, hrs, min, sec, ms);
 }
@@ -628,7 +628,7 @@ export function getTimezoneOffset(
       hrs,
       2,
     )}:${pad(min, 2)}:${pad(sec, 2)}.${pad(ms, 3)}`;
-    date = toDate(dateString, { timeZone: timezone });
+    date = spacetime(dateString, timezone).toNativeDate();
   } else {
     date = new Date(y, m - 1, d, hrs, min, sec, ms);
   }

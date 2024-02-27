@@ -50,9 +50,9 @@
   "dependencies": {
     "@types/lodash": "^4.14.165",
     "@types/resize-observer-browser": "^0.1.7",
-    "date-fns": "^2.16.1",
-    "date-fns-tz": "^2.0.0",
+    "date-fns": "^3.0.0",
     "lodash": "^4.17.20",
+    "spacetime": "^7.6.0",
     "vue-screen-utils": "^1.0.0-beta.13"
   },
   "peerDependencies": {
@@ -71,7 +71,7 @@
     "@vue/test-utils": "^2.3.2",
     "autoprefixer": "^9.7.8",
     "eslint": "^8.17.0",
-    "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-vue": "^9.1.1",
     "jsdom": "^21.1.1",
     "lint-staged": "^10.4.2",
