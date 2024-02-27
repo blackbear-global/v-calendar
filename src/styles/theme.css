@@ -52,6 +52,11 @@
   --vc-day-content-transition: all 0.13s ease-in;
   --vc-weeknumber-offset-inside: 26px;
   --vc-weeknumber-offset-outside: 34px;
+
+  --vc-popover-content-offset-horizontal: 8px;
+  --vc-popover-content-offset-vertical: 10px;
+  --vc-popover-caret-offset-horizontal: 18px;
+  --vc-popover-caret-offset-vertical: 8px;
 }
 
 .vc-gray {
