@@ -19,6 +19,7 @@ export interface PopoverOptions {
   data: any;
   showDelay: number;
   hideDelay: number;
+  teleport?: string | HTMLElement | Element;
 }
 
 export interface PopoverEvent {

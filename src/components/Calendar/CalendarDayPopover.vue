@@ -1,5 +1,8 @@
 <template>
-  <Popover :id="dayPopoverId" :class="[`vc-${color}`, `vc-${displayMode}`]">
+  <Popover
+    v-bind="dayPopoverOptions"
+    :class="[`vc-${color}`, `vc-${displayMode}`]"
+  >
     <template #default="{ data: { day, attributes }, hide }">
       <CalendarSlot
         name="day-popover"
@@ -32,7 +35,7 @@ import Popover from '../Popover/Popover.vue';
 import PopoverRow from '../Popover/PopoverRow.vue';
 import CalendarSlot from './CalendarSlot.vue';
 
-const { dayPopoverId, displayMode, color, masks, locale } = useCalendar();
+const { dayPopoverOptions, displayMode, color, masks, locale } = useCalendar();
 
 function format(date: Date, mask: string) {
   return locale.value.formatDate(date, mask);

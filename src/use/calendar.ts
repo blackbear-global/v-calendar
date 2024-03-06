@@ -23,7 +23,7 @@ import { getDefault } from '../utils/defaults';
 import {
   type CustomElement,
   arrayHasItems,
-  has,
+  defaultsDeep,
   head,
   isBoolean,
   last,
@@ -43,7 +43,11 @@ import {
   pageIsValid,
   pageRangeToArray,
 } from '../utils/page';
-import { type PopoverVisibility, hidePopover } from '../utils/popovers';
+import {
+  type PopoverVisibility,
+  hidePopover,
+  type PopoverOptions,
+} from '../utils/popovers';
 import { addHorizontalSwipeHandler } from '../utils/touch';
 import { handleWatcher, skipWatcher } from '../utils/watchers';
 import { propsDef as basePropsDef, useOrCreateBase } from './base';
@@ -206,6 +210,12 @@ export function createCalendar(
   const isWeekly = computed(() => _view.value === 'weekly');
   const isDaily = computed(() => _view.value === 'daily');
 
+  const dayPopoverOptions = computed<PopoverOptions>(() =>
+    defaultsDeep({}, props.popoverDay, { id: dayPopoverId.value }),
+  );
+  const navPopoverOptions = computed<PopoverOptions>(() =>
+    defaultsDeep({}, props.popoverNav, { id: navPopoverId.value }),
+  );
   // #endregion Computed
 
   // #region Methods
@@ -720,8 +730,8 @@ export function createCalendar(
     containerRef,
     focusedDay,
     inTransition,
-    navPopoverId,
-    dayPopoverId,
+    navPopoverOptions,
+    dayPopoverOptions,
     view: _view,
     pages: _pages,
     transitionName,

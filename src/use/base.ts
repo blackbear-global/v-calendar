@@ -11,6 +11,7 @@ import { type DayOfWeek, addDays } from '../utils/date/helpers';
 import { getDefault } from '../utils/defaults';
 import { isObject } from '../utils/helpers';
 import { default as Locale, type LocaleConfig } from '../utils/locale';
+import type { PopoverOptions } from '../utils/popovers';
 import { Theme } from '../utils/theme';
 
 const contextKey = Symbol('__vc_base_context__');
@@ -33,6 +34,14 @@ export const propsDef = {
   minDate: null,
   maxDate: null,
   disabledDates: null,
+  popoverDay: {
+    type: Object as PropType<Partial<Omit<PopoverOptions, 'target'>>>,
+    default: () => ({}),
+  },
+  popoverNav: {
+    type: Object as PropType<Partial<Omit<PopoverOptions, 'target'>>>,
+    default: () => ({}),
+  },
 };
 
 export type BaseProps = Readonly<ExtractPropTypes<typeof propsDef>>;

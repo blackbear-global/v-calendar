@@ -18,7 +18,7 @@
     </button>
     <div v-if="show.title" class="vc-title-wrapper">
       <CalendarSlot name="header-title-wrapper">
-        <button type="button" class="vc-title" v-popover="navPopoverOptions">
+        <button type="button" class="vc-title" v-popover="navPopover">
           <CalendarSlot name="header-title" :title="page.title">
             <span>{{ page.title }}</span>
           </CalendarSlot>
@@ -63,7 +63,7 @@ const props = defineProps<{
 }>();
 
 const {
-  navPopoverId,
+  navPopoverOptions,
   navVisibility,
   canMovePrev,
   movePrev,
@@ -82,10 +82,10 @@ const navPlacement = computed<PopoverPlacement>(() => {
   }
 });
 
-const navPopoverOptions = computed<Partial<PopoverOptions>>(() => {
+const navPopover = computed<Partial<PopoverOptions>>(() => {
   const { page } = props;
   return {
-    id: navPopoverId.value,
+    ...navPopoverOptions.value,
     visibility: navVisibility.value,
     placement: navPlacement.value,
     flip: false,

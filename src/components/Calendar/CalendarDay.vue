@@ -75,7 +75,7 @@ export default defineComponent({
       locale,
       theme,
       attributeContext,
-      dayPopoverId,
+      dayPopoverOptions,
       onDayClick,
       onDayMouseenter,
       onDayMouseleave,
@@ -213,7 +213,7 @@ export default defineComponent({
       if (!arrayHasItems(popovers.value)) return null;
       return defaults(
         {
-          id: dayPopoverId.value,
+          id: dayPopoverOptions.value.id,
           data: { day, attributes: popoverAttrs.value },
         },
         ...popovers.value,

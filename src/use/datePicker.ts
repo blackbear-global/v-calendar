@@ -307,6 +307,9 @@ export function createDatePicker(
     );
   });
 
+  const popoverDay = computed(() => props.popoverDay);
+  const popoverNav = computed(() => props.popoverNav);
+
   // #endregion Computed
 
   function getAutoRules() {
@@ -875,6 +878,8 @@ export function createDatePicker(
     dateParts,
     attributes,
     rules,
+    popoverDay,
+    popoverNav,
     move,
     moveBy,
     moveToValue,

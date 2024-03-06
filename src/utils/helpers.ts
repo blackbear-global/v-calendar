@@ -3,7 +3,7 @@ import {
   isDate as _isDate,
   isFunction,
   isString,
-  some as _some
+  some as _some,
 } from 'lodash';
 import type { ComponentPublicInstance, Ref } from 'vue';
 
@@ -19,7 +19,7 @@ export {
   defaultsDeep,
   map,
   head,
-  last
+  last,
 } from 'lodash';
 
 export type ElementTarget =

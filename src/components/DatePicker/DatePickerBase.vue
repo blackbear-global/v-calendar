@@ -12,6 +12,8 @@
   <Calendar
     v-else
     :attributes="attributes"
+    :popover-day="popoverDay"
+    :popover-nav="popoverNav"
     ref="calendarRef"
     @dayclick="onDayClick"
     @daymouseenter="onDayMouseEnter"
@@ -44,6 +46,8 @@ const {
   isDateTimeMode,
   isTimeMode,
   isRange,
+  popoverDay,
+  popoverNav,
   onDayClick,
   onDayMouseEnter,
   onDayKeydown,

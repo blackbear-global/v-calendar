@@ -49,7 +49,7 @@ export default defineComponent({
         ({
           id: props.popoverId,
           placement: 'right',
-        } as Partial<PopoverOptions>),
+        }) as Partial<PopoverOptions>,
     );
 
     function show(event: Event) {
