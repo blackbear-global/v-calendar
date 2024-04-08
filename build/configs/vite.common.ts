@@ -25,7 +25,7 @@ export const readDirRecursive = (path: string): string[] => {
 };
 
 const rollupCommonOptions: RollupOptions = {
-  external: ['vue', 'lodash', 'date-fns', 'spacetime', '@floating-ui/dom'],
+  external: ['vue', 'lodash', 'date-fns', 'date-fns-tz', '@floating-ui/dom'],
   output: {
     // Provide global variables to use in the UMD build
     // for externalized deps
@@ -33,7 +33,7 @@ const rollupCommonOptions: RollupOptions = {
       '@floating-ui/dom': 'FloatingUIDOM',
       'date-fns': 'dateFns',
       'lodash': '_',
-      'spacetime': 'spacetime',
+      'date-fns-tz': 'dateFnsTz',
       'vue': 'Vue',
     },
   },

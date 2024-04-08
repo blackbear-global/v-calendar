@@ -8,14 +8,14 @@ import {
   isFunction,
   isObject,
 } from '../helpers';
-import spacetime from 'spacetime';
+import { toDate } from 'date-fns-tz';
 import {
   getWeeksInMonth,
   getWeek,
   getISOWeek,
   addDays,
   addMonths,
-  addYears
+  addYears,
 } from 'date-fns';
 import { type LocaleConfig, default as Locale } from '../locale';
 
@@ -587,7 +587,7 @@ export function diffInMonths(d1: Date, d2: Date) {
 
 export function getDateFromParts(
   parts: Partial<SimpleDateParts>,
-  timezone = '',
+  timeZone = '',
 ) {
   const d = new Date();
   const {
@@ -600,19 +600,19 @@ export function getDateFromParts(
     milliseconds: ms = 0,
   } = parts;
 
-  if (timezone) {
+  if (timeZone) {
     const dateString = `${pad(year, 4)}-${pad(month, 2)}-${pad(day, 2)}T${pad(
       hrs,
       2,
     )}:${pad(min, 2)}:${pad(sec, 2)}.${pad(ms, 3)}`;
-    return spacetime(dateString, timezone).toNativeDate();
+    return toDate(dateString, { timeZone });
   }
   return new Date(year, month - 1, day, hrs, min, sec, ms);
 }
 
 export function getTimezoneOffset(
   parts: Partial<SimpleDateParts>,
-  timezone = '',
+  timeZone = '',
 ) {
   const {
     year: y = 0,
@@ -625,12 +625,12 @@ export function getTimezoneOffset(
   } = parts;
   let date;
   const utcDate = new Date(Date.UTC(y, m - 1, d, hrs, min, sec, ms));
-  if (timezone) {
+  if (timeZone) {
     const dateString = `${pad(y, 4)}-${pad(m, 2)}-${pad(d, 2)}T${pad(
       hrs,
       2,
     )}:${pad(min, 2)}:${pad(sec, 2)}.${pad(ms, 3)}`;
-    date = spacetime(dateString, timezone).toNativeDate();
+    date = toDate(dateString, { timeZone });
   } else {
     date = new Date(y, m - 1, d, hrs, min, sec, ms);
   }
