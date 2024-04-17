@@ -332,29 +332,32 @@ function getWeeks(
   showIsoWeeknumbers: boolean,
   locale: Locale,
 ): CalendarWeek[] {
-  const result = days.reduce((result: CalendarWeek[], day: CalendarDay, i) => {
-    const weekIndex = Math.floor(i / 7);
-    let week = result[weekIndex];
-    if (!week) {
-      week = {
-        id: `week-${weekIndex + 1}`,
-        title: '',
-        week: day.week,
-        weekPosition: day.weekPosition,
-        weeknumber: day.weeknumber,
-        isoWeeknumber: day.isoWeeknumber,
-        weeknumberDisplay: showWeeknumbers
-          ? day.weeknumber
-          : showIsoWeeknumbers
-          ? day.isoWeeknumber
-          : undefined,
-        days: [],
-      };
-      result[weekIndex] = week;
-    }
-    week.days.push(day);
-    return result;
-  }, Array(days.length / daysInWeek));
+  const result = days.reduce(
+    (result: CalendarWeek[], day: CalendarDay, i) => {
+      const weekIndex = Math.floor(i / 7);
+      let week = result[weekIndex];
+      if (!week) {
+        week = {
+          id: `week-${weekIndex + 1}`,
+          title: '',
+          week: day.week,
+          weekPosition: day.weekPosition,
+          weeknumber: day.weeknumber,
+          isoWeeknumber: day.isoWeeknumber,
+          weeknumberDisplay: showWeeknumbers
+            ? day.weeknumber
+            : showIsoWeeknumbers
+            ? day.isoWeeknumber
+            : undefined,
+          days: [],
+        };
+        result[weekIndex] = week;
+      }
+      week.days.push(day);
+      return result;
+    },
+    Array(days.length / daysInWeek),
+  );
   result.forEach(week => {
     const fromDay = week.days[0];
     const toDay = week.days[week.days.length - 1];

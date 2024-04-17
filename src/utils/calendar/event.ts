@@ -1,7 +1,6 @@
-import { addDays } from 'date-fns';
 import { type ComputedRef, computed, reactive, toRefs } from 'vue';
 import type { DragOffset, ResizeOffset } from '../../use/calendarGrid';
-import { MS_PER_MINUTE, roundDate } from '../date/helpers';
+import { MS_PER_MINUTE, addDays, roundDate } from '../date/helpers';
 import { DateRange } from '../date/range';
 import { clamp, omit } from '../helpers';
 import Locale from '../locale';

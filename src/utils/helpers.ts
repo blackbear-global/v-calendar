@@ -1,14 +1,14 @@
 import {
   has as _has,
   isDate as _isDate,
-  isFunction,
   isString,
   some as _some,
 } from 'lodash';
-import type { ComponentPublicInstance, Ref } from 'vue';
+import type { ComponentPublicInstance, MaybeRef } from 'vue';
 
-export { isFunction, isString };
 export {
+  isFunction,
+  isString,
   isBoolean,
   isNumber,
   isUndefined,
@@ -22,12 +22,9 @@ export {
   last,
 } from 'lodash';
 
-export type ElementTarget =
-  | string
-  | HTMLElement
-  | ComponentPublicInstance
-  | null
-  | Ref<string | HTMLElement | ComponentPublicInstance | null>;
+export type ElementTarget = MaybeRef<
+  string | HTMLElement | ComponentPublicInstance | null
+>;
 
 // Type checkers
 export const getType = (value: any) =>

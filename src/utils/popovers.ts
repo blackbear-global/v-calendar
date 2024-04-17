@@ -22,6 +22,25 @@ export interface PopoverOptions {
   teleport?: string | HTMLElement | Element;
 }
 
+export interface PopoverState
+  extends Pick<
+    PopoverOptions,
+    | 'placement'
+    | 'flip'
+    | 'positionFixed'
+    | 'isInteractive'
+    | 'visibility'
+    | 'autoHide'
+  > {
+  isVisible: boolean;
+  target: ElementTarget;
+  data: any;
+  transition: string;
+  isHovered: boolean;
+  isFocused: boolean;
+  force: boolean;
+}
+
 export interface PopoverEvent {
   detail: Partial<PopoverOptions>;
 }

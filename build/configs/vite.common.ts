@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue';
-import { lstatSync, readdirSync } from 'fs';
-import path from 'path';
+import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
+import { lstatSync, readdirSync } from 'node:fs';
+import path from 'node:path';
 import type { RollupOptions } from 'rollup';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { type InlineConfig } from 'vite';
@@ -113,6 +114,7 @@ export function createViteConfig(format: BuildFormat): InlineConfig {
         isProduction: true,
         exclude: [/\.md$/, /\.spec\.ts$/, /\.spec\.disabled$/],
       }),
+      optimizeLodashImports(),
     ],
   };
 

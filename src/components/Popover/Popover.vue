@@ -70,28 +70,10 @@ import {
 } from '../../utils/helpers';
 import type {
   PopoverEvent,
-  PopoverPlacement,
   PopoverOptions,
+  PopoverPlacement,
+  PopoverState,
 } from '../../utils/popovers';
-
-interface PopoverState
-  extends Pick<
-    PopoverOptions,
-    | 'placement'
-    | 'flip'
-    | 'positionFixed'
-    | 'isInteractive'
-    | 'visibility'
-    | 'autoHide'
-  > {
-  isVisible: boolean;
-  target: ElementTarget;
-  data: any;
-  transition: string;
-  isHovered: boolean;
-  isFocused: boolean;
-  force: boolean;
-}
 
 export default defineComponent({
   inheritAttrs: false,
@@ -100,7 +82,7 @@ export default defineComponent({
     id: { type: [Number, String, Symbol], required: true },
     showDelay: { type: Number, default: 0 },
     hideDelay: { type: Number, default: 110 },
-    teleport: { type: [String, Object], default: 'body' },
+    teleport: { type: [String, Object], default: undefined },
   },
   setup(props, { emit }) {
     let timeout: number | undefined = undefined;
