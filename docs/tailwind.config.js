@@ -1,10 +1,18 @@
+import colors from 'tailwindcss/colors';
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors');
-
-delete colors.lightBlue;
-
-module.exports = {
-  content: ['./.vitepress/**/*.{js,ts,vue}', './**/*.md'],
+export default {
+  content: [
+    './.vitepress/**/*.{js,ts,vue}',
+    './calendar/**/*.md',
+    './datepicker/**/*.md',
+    './event-calendar/**/*.md',
+    './examples/**/*.md',
+    './getting-started/**/*.md',
+    './i18n/**/*.md',
+  ],
   darkMode: 'class',
   theme: {
     fontFamily: {
@@ -17,5 +25,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography', '@tailwindcss/forms')],
+  plugins: [forms, typography],
 };

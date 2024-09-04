@@ -187,6 +187,9 @@ export default defineConfig({
     },
   },
   vite: {
+    build: {
+      target: ['chrome121', 'firefox122', 'safari17'],
+    },
     server: {
       port: 3000,
     },

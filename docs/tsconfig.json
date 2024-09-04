@@ -1,3 +1,6 @@
 {
-  "include": ["vite/client"]
+  "compilerOptions": {
+    "types": ["vitepress/client"]
+  },
+  "include": ["./**/*.js", "./**/*.ts"]
 }
