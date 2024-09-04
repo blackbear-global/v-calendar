@@ -1,5 +1,5 @@
-import { execSync } from 'child_process';
-import fs from 'fs';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 import { type BuildFormat } from './configs/vite.common';
 
 const formats: BuildFormat[] = ['es', 'mjs', 'cjs', 'iife'];

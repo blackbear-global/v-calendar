@@ -72,7 +72,7 @@ export function createViteConfig(format: BuildFormat): InlineConfig {
   const useTerser = format === 'iife';
 
   let rollupOptions: RollupOptions;
-  switch(format) {
+  switch (format) {
     case 'es':
       rollupOptions = rollupEsmBuildOptions;
       break;

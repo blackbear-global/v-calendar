@@ -1,6 +1,6 @@
 import { version } from '../../package.json';
 import { fileURLToPath, URL } from 'node:url';
-import path from 'path';
+import path from 'node:path';
 import { defineConfig } from 'vitepress';
 
 function nav() {
