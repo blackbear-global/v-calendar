@@ -1,9 +1,4 @@
-import {
-  has as _has,
-  isDate as _isDate,
-  isString,
-  some as _some,
-} from 'lodash';
+import { has, isDate as _isDate, isString, some } from 'lodash';
 import type { ComponentPublicInstance, MaybeRef } from 'vue';
 
 export {
@@ -20,6 +15,8 @@ export {
   map,
   head,
   last,
+  has,
+  some,
 } from 'lodash';
 
 export type ElementTarget = MaybeRef<
@@ -35,13 +32,10 @@ export const isObject = (value: unknown): value is Object =>
   getType(value) === 'Object';
 
 // Object utils
-export const has = _has;
 export const hasAny = (obj: object, props: string[]) =>
-  _some(props, p => _has(obj, p));
+  some(props, p => has(obj, p));
 
 // Collection utils
-export const some = _some;
-
 export const pad = (val: string | number, len: number, char = '0') => {
   val = val !== null && val !== undefined ? String(val) : '';
   len = len || 2;
